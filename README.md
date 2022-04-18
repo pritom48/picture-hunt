@@ -1,10 +1,23 @@
 # Photo Hunt
 
-Photo hunt [Live link](https://github.com/facebook/create-react-app).
+Photo hunt [Live link](
+https://hilarious-churros-d2a02e.netlify.app).
 
-## Available Scripts
+## About This site
 
-In the project directory, you can run:
+1.Photography based site
+2.It has lot of routes
+3.it has login system
+3.it has register system
+
+
+## Use Technology
+
+1.HTML
+2.CSS
+3.BOOTSTRAP
+4.REACT.JS
+5.FIREBASE
 
 ### `npm start`
 
