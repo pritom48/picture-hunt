@@ -2,23 +2,30 @@ import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
 
+    const nameRef = useRef('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
 
-    const handleLoginSubmit = event => {
+    const handleRegisterSubmit = event => {
         event.preventDefault();
+        const name = nameRef.current.value;
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-        console.log(email, password)
+        console.log(name, email, password)
+
     }
 
     return (
         <div className='container w-50 mx-auto mt-5'>
-            <h2 className='text-info text-center my-3'>Please LogIn</h2>
-            <Form onSubmit={handleLoginSubmit}>
+            <h2 className='text-info text-center my-3'>Please Register</h2>
+            <Form onSubmit={handleRegisterSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Your Name</Form.Label>
+                    <Form.Control ref={nameRef} type="text" placeholder="Your Name" required />
+                </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
@@ -32,12 +39,12 @@ const Login = () => {
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    LogIn
+                    Register
                 </Button>
             </Form>
-            <p>New to Picture Hunt? <span><Link className='text-decoration-none text-danger ps-2' to='/register'>Please Register</Link></span></p>
+            <p>Already Register? <span><Link className='text-decoration-none text-danger ps-2' to='/login'>Please LogIn</Link></span></p>
         </div>
     );
 };
 
-export default Login;
+export default Register;
