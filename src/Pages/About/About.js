@@ -7,6 +7,7 @@ const About = () => {
             <div className='d-flex '>
                 <img height={400} className="rounded mx-auto d-block" src={mypic} alt="" />
             </div>
+            <h4 className='text-center'>Pritom Das</h4>
             <p className='text-center'> <b>"I want to be a competitive programmer. This course is my one step .After this course I will try to get a internship or job. And I will explore others programming languages."</b> </p>
         </div>
     );
