@@ -1,12 +1,25 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import SocialLogin from '../../Sheared/SocialLogin/SocialLogin';
 
 const Register = () => {
-
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate();
     const nameRef = useRef('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
+
+    if (user) {
+        navigate('/home')
+    }
 
     const handleRegisterSubmit = event => {
         event.preventDefault();
@@ -14,7 +27,7 @@ const Register = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-        console.log(name, email, password)
+        createUserWithEmailAndPassword(email, password)
 
     }
 
@@ -43,6 +56,7 @@ const Register = () => {
                 </Button>
             </Form>
             <p>Already Register? <span><Link className='text-decoration-none text-danger ps-2' to='/login'>Please LogIn</Link></span></p>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
