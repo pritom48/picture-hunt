@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Photo Hunt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Photo hunt [Live link](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
