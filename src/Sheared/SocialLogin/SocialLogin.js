@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate = useNavigate();
     let errorElement;
 
@@ -16,7 +17,7 @@ const SocialLogin = () => {
 
     }
 
-    if (user) {
+    if (user || user1) {
         navigate('/home')
     }
 
@@ -41,7 +42,9 @@ const SocialLogin = () => {
                     <span className='ps-2 pt-2'>Facebook SignIn</span>
                 </button>
                 <br />
-                <button className='btn btn-primary d-block mx-auto w-50 '>
+                <button
+                    onClick={() => signInWithGithub()}
+                    className='btn btn-primary d-block mx-auto w-50 '>
                     <img className='ps-5' style={{ height: '30px' }} src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" />
                     <span className='ps-2'>Gighub SignIn</span>
                 </button>
