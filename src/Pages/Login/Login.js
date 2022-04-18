@@ -4,6 +4,9 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import SocialLogin from '../../Sheared/SocialLogin/SocialLogin';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -18,8 +21,18 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(
+        auth
+    );
+
     if (user) {
         navigate('/home')
+    }
+
+    const resetPassword = async (event) => {
+        const email = emailRef.current.value;
+        await sendPasswordResetEmail(email);
+        toast("sent email")
     }
 
     const handleLoginSubmit = event => {
@@ -51,7 +64,9 @@ const Login = () => {
                 </Button>
             </Form>
             <p>New to Picture Hunt? <span><Link className='text-decoration-none text-danger ps-2' to='/register'>Please Register</Link></span></p>
+            <p>Forget Your Password? <button onClick={resetPassword} className='text-danger ps-2 border-none'>Reset</button></p>
             <SocialLogin></SocialLogin>
+            <ToastContainer />
         </div>
     );
 };
